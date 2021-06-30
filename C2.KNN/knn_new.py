@@ -39,5 +39,4 @@ def classify(inX, dataSet, labels, k):  # 参数详细解释看下面
 
 group, labels = createDataSet()
 predict = classify([0, 0], group, labels, 3)  # 装入一个新的数据，然后开始测试类别
-print(soredClassCount)
 print(predict)
