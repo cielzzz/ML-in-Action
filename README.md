@@ -5,4 +5,4 @@
 
 ### 代码
 
-* [1.简单kNN](https://github.com/Jack-Cherish/Machine-Learning/tree/master/kNN/1.%E7%AE%80%E5%8D%95k-NN "悬停显示")
+* [1.简单kNN](https://github.com/cielzzz/ML-in-Action-/tree/master/C2.KNN "悬停显示")
