@@ -1,20 +1,20 @@
 #coding=utf8
 #KNN.py
-from numpy import * #导入科学计算包
+import numpy as np 
 import operator  #导入运算符模块
  
 def createDataSet():   #创造一个数据集
-    group = array([[1.0,1.1],[1.0,1.0],[0,0],[0,0.1]])   #构造特征集矩阵
-    labels = ['A','A','B','B']               #输入标签
+    group = np.array([[1.0,1.1],[1.0,1.0],[0,0],[0,0.1]])   #构造特征集矩阵
+    labels = ['A','A','B','B']     #输入标签
     return group,labels
  
  
 """函数功能就是根据数据集，然后预测新给定的样本数据InX的标签是什么（会在最后返回）"""
-def classify(inX,dataSet,labels,k):     #参数详细解释看下面
+def classify(inX,dataSet,labels,k):    #inX测试集，Dataset是已知数据集
  
 	#第一步：求欧式距离
 	dataSetSize=dataSet.shape[0]         #dataSetSize是dataSet的行数，用上面的举例就是4行
-	diffMat=tile(inX,(dataSetSize,1))-dataSet   #坐标相减
+	diffMat= np.tile(inX,(dataSetSize,1))-dataSet   #坐标相减，tile意思是将inX（比如inx为[1,2,1]）构建成一个矩阵和已知的点数集合dataSet相减
 	sqDiffMat=diffMat**2                 #上一行得到了坐标相减，然后这里要(x1-x2)^2，要求乘方
 	sqDistances=sqDiffMat.sum(axis=1)    #axis=1是列相加，，这样得到了(x1-x2)^2+(y1-y2)^2
 	distances=sqDistances**0.5           #开根号，这个之后才是距离
@@ -22,7 +22,7 @@ def classify(inX,dataSet,labels,k):     #参数详细解释看下面
 	#第二步：所有距离进行排序
 	sortedDistIndicies=distances.argsort()         #argsort是排序，将元素按照由小到大的顺序返回下标，比如([3,1,2]),它返回的就是([1,2,0])
  
-	#第三步：取排序前k个，这里的k就是KNN中的k，然后放入到词典中，词典的结构是：类别：个数
+	#第三步：取排序前k个，这里的k就是KNN中的k，然后放入到词典中，词典的结构是：  类别：个数
 	classCount={}
 	for i in range(k):
 		voteIlabel=labels[sortedDistIndicies[i]]  #设置词典中的key值，也就是标签
